@@ -1,0 +1,591 @@
+{
+  "mode": "career",
+  "roles": {
+    "gov": {
+      "name": "AI Governance Analyst",
+      "text": "You like evidence, structure and finding the gap others missed. Analysts keep the AI inventory, run assessments and turn findings into actions leaders can approve.",
+      "steps": [
+        "Learn the structure of ISO/IEC 42001 and the NIST AI RMF",
+        "Practise building an AI inventory and risk register",
+        "Take the AI GRC Practitioner programme"
+      ]
+    },
+    "risk": {
+      "name": "AI Risk and Compliance Specialist",
+      "text": "You weigh exposure and make the call. Specialists map AI use to law and regulation, run impact assessments and decide which controls a use case needs.",
+      "steps": [
+        "Study the EU AI Act risk tiers alongside UK GDPR and the NDPA",
+        "Run a data protection impact assessment on an AI tool",
+        "Pair your experience with an AI risk certification"
+      ]
+    },
+    "policy": {
+      "name": "AI Policy and Ethics Advisor",
+      "text": "You write guidance people follow and can explain hard trade-offs in plain words. Advisors draft AI policy, lead consultations and advise on fairness and integrity.",
+      "steps": [
+        "Read three published AI use policies and compare them",
+        "Draft an acceptable AI use policy for a team you know",
+        "Join a UAICIP or public session on AI ethics"
+      ]
+    },
+    "audit": {
+      "name": "AI Assurance and Audit",
+      "text": "You test claims and ask for proof. Assurance professionals check whether AI controls work, gather audit evidence and report to boards and regulators.",
+      "steps": [
+        "Learn how ISO/IEC 42001 audits are planned and evidenced",
+        "Practise testing a control end to end",
+        "Consider a lead auditor route alongside AI GRC training"
+      ]
+    },
+    "eng": {
+      "name": "AI GRC Engineer",
+      "text": "You build the systems that make governance real. Engineers automate logging, access control, model monitoring and the evidence trail auditors rely on.",
+      "steps": [
+        "Learn how audit logs and access control work in AI platforms",
+        "Build a small tool that records prompts, sources and outputs",
+        "Map your technical skills to ISO/IEC 42001 controls"
+      ]
+    },
+    "lead": {
+      "name": "Responsible AI Programme Lead",
+      "text": "You bring people with you. Programme leads own the AI governance roadmap, chair the committee and keep training, policy and tools moving together.",
+      "steps": [
+        "Build a twelve-month responsible AI roadmap for a real organisation",
+        "Learn to brief a board on AI risk in under ten minutes",
+        "Take the leadership track in our training programmes"
+      ]
+    }
+  },
+  "levels": [
+    [
+      0,
+      "Starting point",
+      "lv-1",
+      "You are early in the journey. Foundations in AI risk and one framework will move you forward fast."
+    ],
+    [
+      5,
+      "Building",
+      "lv-2",
+      "You have useful experience to build on. Targeted study and a recognised certificate will close the gap."
+    ],
+    [
+      9,
+      "Ready to specialise",
+      "lv-3",
+      "Your background fits well. A focused certification and one practical project would make you competitive."
+    ],
+    [
+      12,
+      "Ready now",
+      "lv-4",
+      "You already hold much of what employers want. Position your experience and apply for AI governance roles."
+    ]
+  ],
+  "questions": [
+    {
+      "domain": "Background",
+      "title": "Which field best describes your current work?",
+      "type": "radio",
+      "options": [
+        {
+          "label": "Law, compliance or data protection",
+          "w": {
+            "risk": 3,
+            "policy": 1
+          }
+        },
+        {
+          "label": "IT, software or data",
+          "w": {
+            "eng": 3,
+            "audit": 1
+          }
+        },
+        {
+          "label": "Audit, finance or risk",
+          "w": {
+            "audit": 3,
+            "risk": 2
+          }
+        },
+        {
+          "label": "Policy or public administration",
+          "w": {
+            "policy": 3,
+            "gov": 1
+          }
+        },
+        {
+          "label": "Education or research",
+          "w": {
+            "policy": 2,
+            "gov": 2
+          }
+        },
+        {
+          "label": "Management or operations",
+          "w": {
+            "lead": 3,
+            "gov": 1
+          }
+        },
+        {
+          "label": "Student or early career",
+          "w": {
+            "gov": 2
+          }
+        }
+      ]
+    },
+    {
+      "domain": "Background",
+      "title": "How many years of professional experience do you have?",
+      "type": "radio",
+      "options": [
+        {
+          "label": "Under 2 years",
+          "w": {
+            "gov": 1
+          }
+        },
+        {
+          "label": "2 to 5 years",
+          "w": {
+            "r": 1
+          }
+        },
+        {
+          "label": "6 to 10 years",
+          "w": {
+            "r": 2,
+            "lead": 1
+          }
+        },
+        {
+          "label": "More than 10 years",
+          "w": {
+            "r": 3,
+            "lead": 2
+          }
+        }
+      ]
+    },
+    {
+      "domain": "Interests",
+      "title": "Which task gives you the most satisfaction?",
+      "type": "radio",
+      "options": [
+        {
+          "label": "Analysing information to find gaps",
+          "w": {
+            "gov": 3,
+            "audit": 1
+          }
+        },
+        {
+          "label": "Writing guidance that people follow",
+          "w": {
+            "policy": 3
+          }
+        },
+        {
+          "label": "Testing whether something works as claimed",
+          "w": {
+            "audit": 3
+          }
+        },
+        {
+          "label": "Building or automating systems",
+          "w": {
+            "eng": 3
+          }
+        },
+        {
+          "label": "Leading people through change",
+          "w": {
+            "lead": 3
+          }
+        },
+        {
+          "label": "Weighing risks and making the call",
+          "w": {
+            "risk": 3
+          }
+        }
+      ]
+    },
+    {
+      "domain": "Skills",
+      "title": "How comfortable are you with technical work such as data, code or system settings?",
+      "type": "radio",
+      "options": [
+        {
+          "label": "Very comfortable, it is part of my job",
+          "w": {
+            "eng": 3,
+            "audit": 1,
+            "r": 1
+          }
+        },
+        {
+          "label": "Comfortable with the basics",
+          "w": {
+            "gov": 1,
+            "audit": 1,
+            "risk": 1
+          }
+        },
+        {
+          "label": "I prefer non-technical work",
+          "w": {
+            "policy": 2,
+            "lead": 1
+          }
+        },
+        {
+          "label": "Not comfortable at all",
+          "w": {
+            "policy": 2
+          }
+        }
+      ]
+    },
+    {
+      "domain": "Experience",
+      "title": "Which frameworks or laws have you worked with?",
+      "hint": "Select all that apply.",
+      "type": "checkbox",
+      "options": [
+        {
+          "label": "ISO/IEC 42001",
+          "w": {
+            "gov": 1,
+            "audit": 1,
+            "r": 1
+          }
+        },
+        {
+          "label": "ISO/IEC 27001",
+          "w": {
+            "eng": 1,
+            "audit": 1,
+            "r": 1
+          }
+        },
+        {
+          "label": "NIST AI RMF",
+          "w": {
+            "risk": 2,
+            "r": 1
+          }
+        },
+        {
+          "label": "GDPR, UK GDPR or NDPA",
+          "w": {
+            "risk": 1,
+            "policy": 1,
+            "r": 1
+          }
+        },
+        {
+          "label": "EU AI Act",
+          "w": {
+            "policy": 1,
+            "risk": 1,
+            "r": 1
+          }
+        },
+        {
+          "label": "COSO, COBIT or internal audit standards",
+          "w": {
+            "audit": 2,
+            "r": 1
+          }
+        },
+        {
+          "label": "None yet",
+          "w": {},
+          "none": true
+        }
+      ]
+    },
+    {
+      "domain": "Experience",
+      "title": "Which certifications do you hold?",
+      "hint": "Select all that apply.",
+      "type": "checkbox",
+      "options": [
+        {
+          "label": "CIPP or CIPM",
+          "w": {
+            "policy": 1,
+            "risk": 1,
+            "r": 1
+          }
+        },
+        {
+          "label": "CISA or CISM",
+          "w": {
+            "audit": 2,
+            "r": 1
+          }
+        },
+        {
+          "label": "CRISC",
+          "w": {
+            "risk": 2,
+            "r": 1
+          }
+        },
+        {
+          "label": "ISO lead auditor or implementer",
+          "w": {
+            "audit": 2,
+            "gov": 1,
+            "r": 1
+          }
+        },
+        {
+          "label": "Cloud or security technical certificate",
+          "w": {
+            "eng": 2,
+            "r": 1
+          }
+        },
+        {
+          "label": "PMP, PRINCE2 or similar",
+          "w": {
+            "lead": 2,
+            "r": 1
+          }
+        },
+        {
+          "label": "None yet",
+          "w": {},
+          "none": true
+        }
+      ]
+    },
+    {
+      "domain": "Work style",
+      "title": "How do you prefer to spend most of your working day?",
+      "type": "radio",
+      "options": [
+        {
+          "label": "Deep, independent analysis",
+          "w": {
+            "gov": 2,
+            "audit": 1
+          }
+        },
+        {
+          "label": "Writing and advising",
+          "w": {
+            "policy": 2
+          }
+        },
+        {
+          "label": "Hands-on with tools and systems",
+          "w": {
+            "eng": 2
+          }
+        },
+        {
+          "label": "Coordinating teams and stakeholders",
+          "w": {
+            "lead": 2
+          }
+        },
+        {
+          "label": "Investigating and testing",
+          "w": {
+            "audit": 2,
+            "risk": 1
+          }
+        }
+      ]
+    },
+    {
+      "domain": "Direction",
+      "title": "Which sector interests you most?",
+      "type": "radio",
+      "options": [
+        {
+          "label": "Higher education and research",
+          "w": {
+            "policy": 1,
+            "gov": 1
+          }
+        },
+        {
+          "label": "Banking and financial services",
+          "w": {
+            "risk": 2,
+            "audit": 1
+          }
+        },
+        {
+          "label": "Technology",
+          "w": {
+            "eng": 2
+          }
+        },
+        {
+          "label": "Government and public sector",
+          "w": {
+            "policy": 2
+          }
+        },
+        {
+          "label": "Healthcare",
+          "w": {
+            "risk": 1,
+            "policy": 1
+          }
+        },
+        {
+          "label": "Consulting",
+          "w": {
+            "audit": 1,
+            "lead": 1,
+            "gov": 1
+          }
+        }
+      ]
+    },
+    {
+      "domain": "Skills",
+      "title": "How familiar are you with AI tools?",
+      "type": "radio",
+      "options": [
+        {
+          "label": "I use them daily and understand their limits",
+          "w": {
+            "r": 2,
+            "eng": 1
+          }
+        },
+        {
+          "label": "I use them often",
+          "w": {
+            "r": 1
+          }
+        },
+        {
+          "label": "I have tried a few",
+          "w": {
+            "gov": 1
+          }
+        },
+        {
+          "label": "I have barely used them",
+          "w": {}
+        }
+      ]
+    },
+    {
+      "domain": "Skills",
+      "title": "How comfortable are you writing policies, reports or guidance?",
+      "type": "radio",
+      "options": [
+        {
+          "label": "Very comfortable, I do it often",
+          "w": {
+            "policy": 2,
+            "gov": 1,
+            "r": 1
+          }
+        },
+        {
+          "label": "Comfortable when I need to",
+          "w": {
+            "gov": 1,
+            "risk": 1
+          }
+        },
+        {
+          "label": "I prefer technical documentation",
+          "w": {
+            "eng": 1,
+            "audit": 1
+          }
+        },
+        {
+          "label": "I avoid it where I can",
+          "w": {
+            "eng": 1
+          }
+        }
+      ]
+    },
+    {
+      "domain": "Direction",
+      "title": "Which goal matters most to you right now?",
+      "type": "radio",
+      "options": [
+        {
+          "label": "Move into a new career in AI governance",
+          "w": {
+            "gov": 1
+          }
+        },
+        {
+          "label": "Add AI governance to my current role",
+          "w": {
+            "risk": 1,
+            "lead": 1
+          }
+        },
+        {
+          "label": "Lead an AI programme in my organisation",
+          "w": {
+            "lead": 3
+          }
+        },
+        {
+          "label": "Build technical governance tools",
+          "w": {
+            "eng": 2
+          }
+        },
+        {
+          "label": "Advise or consult on AI",
+          "w": {
+            "policy": 1,
+            "audit": 1
+          }
+        }
+      ]
+    },
+    {
+      "domain": "Commitment",
+      "title": "How much time can you give to learning each week?",
+      "type": "radio",
+      "options": [
+        {
+          "label": "Under 2 hours",
+          "w": {}
+        },
+        {
+          "label": "2 to 5 hours",
+          "w": {
+            "r": 1
+          }
+        },
+        {
+          "label": "5 to 10 hours",
+          "w": {
+            "r": 2
+          }
+        },
+        {
+          "label": "More than 10 hours",
+          "w": {
+            "r": 2
+          }
+        }
+      ]
+    }
+  ]
+}

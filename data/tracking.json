@@ -1,0 +1,470 @@
+{
+  "mode": "tracking",
+  "domains": [
+    "Ownership",
+    "Visibility",
+    "Data handling",
+    "Review",
+    "Training and response"
+  ],
+  "levels": [
+    [
+      0,
+      "Early",
+      "lv-1",
+      "AI is in use, but the rules and owners are not yet in place. A few early steps will remove most of the exposure."
+    ],
+    [
+      35,
+      "Developing",
+      "lv-2",
+      "Some foundations exist. Closing the gaps below will turn good intentions into a framework you can evidence."
+    ],
+    [
+      60,
+      "Established",
+      "lv-3",
+      "Your governance is in good shape. Tightening the weaker areas will prepare you for external scrutiny."
+    ],
+    [
+      85,
+      "Leading",
+      "lv-4",
+      "You govern AI to a high standard. Formal assurance, such as ISO/IEC 42001 certification, is a natural next step."
+    ]
+  ],
+  "questions": [
+    {
+      "domain": "About you",
+      "title": "Where does your organisation operate?",
+      "type": "radio",
+      "context": "loc",
+      "options": [
+        {
+          "label": "Nigeria",
+          "w": {
+            "c": "ng"
+          }
+        },
+        {
+          "label": "United Kingdom",
+          "w": {
+            "c": "uk"
+          }
+        },
+        {
+          "label": "European Union",
+          "w": {
+            "c": "eu"
+          }
+        },
+        {
+          "label": "Several countries",
+          "w": {
+            "c": "multi"
+          }
+        }
+      ]
+    },
+    {
+      "domain": "About you",
+      "title": "What sensitive data could reach AI tools in your organisation?",
+      "hint": "Select all that apply.",
+      "type": "checkbox",
+      "context": "data",
+      "options": [
+        {
+          "label": "Personal data of clients, customers or citizens",
+          "w": {
+            "c": "personal"
+          }
+        },
+        {
+          "label": "Student or patient records",
+          "w": {
+            "c": "records"
+          }
+        },
+        {
+          "label": "Financial information",
+          "w": {
+            "c": "fin"
+          }
+        },
+        {
+          "label": "Confidential, legal or commercial documents",
+          "w": {
+            "c": "conf"
+          }
+        },
+        {
+          "label": "None that we know of",
+          "w": {
+            "c": "none"
+          },
+          "none": true
+        }
+      ]
+    },
+    {
+      "domain": "Ownership",
+      "title": "Is a named person or committee accountable for how AI is used?",
+      "type": "radio",
+      "rec": [
+        "Name an accountable owner",
+        "Give one senior person or a small committee clear responsibility for AI use, with authority to approve, pause or stop it."
+      ],
+      "options": [
+        {
+          "label": "No one owns it",
+          "w": {
+            "s": 0
+          }
+        },
+        {
+          "label": "It falls to IT or whoever is interested",
+          "w": {
+            "s": 1
+          }
+        },
+        {
+          "label": "Yes, informally",
+          "w": {
+            "s": 2
+          }
+        },
+        {
+          "label": "Yes, a named owner with a written mandate",
+          "w": {
+            "s": 3
+          }
+        }
+      ]
+    },
+    {
+      "domain": "Ownership",
+      "title": "Do you have a written policy on acceptable AI use?",
+      "type": "radio",
+      "rec": [
+        "Publish an acceptable AI use policy",
+        "Set out approved tools, data limits and review rules in plain language, and make sure every member of staff has read it."
+      ],
+      "options": [
+        {
+          "label": "No policy",
+          "w": {
+            "s": 0
+          }
+        },
+        {
+          "label": "A draft or general IT policy only",
+          "w": {
+            "s": 1
+          }
+        },
+        {
+          "label": "Yes, but it is not widely known",
+          "w": {
+            "s": 2
+          }
+        },
+        {
+          "label": "Yes, approved, shared and reviewed",
+          "w": {
+            "s": 3
+          }
+        }
+      ]
+    },
+    {
+      "domain": "Visibility",
+      "title": "Do you keep a register of the AI tools in use?",
+      "type": "radio",
+      "rec": [
+        "Build an AI register",
+        "List every AI tool in use, who uses it, what data it touches and its risk level. Most organisations find tools they did not know about."
+      ],
+      "options": [
+        {
+          "label": "No register",
+          "w": {
+            "s": 0
+          }
+        },
+        {
+          "label": "We know some of the tools",
+          "w": {
+            "s": 1
+          }
+        },
+        {
+          "label": "A partial list",
+          "w": {
+            "s": 2
+          }
+        },
+        {
+          "label": "A complete register, kept up to date",
+          "w": {
+            "s": 3
+          }
+        }
+      ]
+    },
+    {
+      "domain": "Visibility",
+      "title": "Must new AI tools be approved before staff use them?",
+      "type": "radio",
+      "rec": [
+        "Create an approval route",
+        "Agree a short, fast process for approving new AI tools, so staff have a safe way to say yes."
+      ],
+      "options": [
+        {
+          "label": "No, staff choose freely",
+          "w": {
+            "s": 0
+          }
+        },
+        {
+          "label": "Only for paid tools",
+          "w": {
+            "s": 1
+          }
+        },
+        {
+          "label": "Usually, though not always followed",
+          "w": {
+            "s": 2
+          }
+        },
+        {
+          "label": "Yes, every tool goes through a set route",
+          "w": {
+            "s": 3
+          }
+        }
+      ]
+    },
+    {
+      "domain": "Data handling",
+      "title": "Do staff have clear rules on what data may go into AI tools?",
+      "type": "radio",
+      "rec": [
+        "Set clear data rules",
+        "Tell staff which categories of data must never enter a public AI tool, and give them an approved option for sensitive work."
+      ],
+      "options": [
+        {
+          "label": "No rules",
+          "w": {
+            "s": 0
+          }
+        },
+        {
+          "label": "General guidance only",
+          "w": {
+            "s": 1
+          }
+        },
+        {
+          "label": "Rules exist for some teams",
+          "w": {
+            "s": 2
+          }
+        },
+        {
+          "label": "Clear rules for everyone, with examples",
+          "w": {
+            "s": 3
+          }
+        }
+      ]
+    },
+    {
+      "domain": "Data handling",
+      "title": "How do you handle staff using personal AI accounts for work?",
+      "type": "radio",
+      "rec": [
+        "Move work onto approved accounts",
+        "Provide organisation-managed AI accounts with the right data settings and ask staff to stop using personal ones for work."
+      ],
+      "options": [
+        {
+          "label": "We have not considered it",
+          "w": {
+            "s": 0
+          }
+        },
+        {
+          "label": "We know it happens",
+          "w": {
+            "s": 1
+          }
+        },
+        {
+          "label": "Discouraged, with approved options for some",
+          "w": {
+            "s": 2
+          }
+        },
+        {
+          "label": "Not permitted, approved accounts provided",
+          "w": {
+            "s": 3
+          }
+        }
+      ]
+    },
+    {
+      "domain": "Review",
+      "title": "Are AI-assisted outputs checked before they reach clients, students or decisions?",
+      "type": "radio",
+      "rec": [
+        "Check outputs before they leave",
+        "Require a named reviewer for AI-assisted work that goes to clients, students or decision makers, and record that the check took place."
+      ],
+      "options": [
+        {
+          "label": "No checks",
+          "w": {
+            "s": 0
+          }
+        },
+        {
+          "label": "It depends on the person",
+          "w": {
+            "s": 1
+          }
+        },
+        {
+          "label": "Checks happen for important work",
+          "w": {
+            "s": 2
+          }
+        },
+        {
+          "label": "A defined review step, recorded",
+          "w": {
+            "s": 3
+          }
+        }
+      ]
+    },
+    {
+      "domain": "Review",
+      "title": "Do you assess risk before using AI in high-impact areas such as hiring, grading, credit or eligibility?",
+      "type": "radio",
+      "rec": [
+        "Assess high-impact uses first",
+        "Run an impact assessment before AI touches decisions about people, covering fairness, accuracy, data protection and appeal routes."
+      ],
+      "options": [
+        {
+          "label": "No",
+          "w": {
+            "s": 0
+          }
+        },
+        {
+          "label": "Occasionally",
+          "w": {
+            "s": 1
+          }
+        },
+        {
+          "label": "For some projects",
+          "w": {
+            "s": 2
+          }
+        },
+        {
+          "label": "Always, with a documented assessment",
+          "w": {
+            "s": 3
+          }
+        }
+      ]
+    },
+    {
+      "domain": "Training and response",
+      "title": "Have staff been trained on responsible AI use?",
+      "type": "radio",
+      "rec": [
+        "Train your people",
+        "Give staff practical training on safe AI use and give leaders a briefing on accountability, then record who has completed it."
+      ],
+      "options": [
+        {
+          "label": "No training",
+          "w": {
+            "s": 0
+          }
+        },
+        {
+          "label": "Informal tips only",
+          "w": {
+            "s": 1
+          }
+        },
+        {
+          "label": "Some teams trained",
+          "w": {
+            "s": 2
+          }
+        },
+        {
+          "label": "All relevant staff trained and recorded",
+          "w": {
+            "s": 3
+          }
+        }
+      ]
+    },
+    {
+      "domain": "Training and response",
+      "title": "Can staff report AI errors or incidents, and is there a plan to respond?",
+      "type": "radio",
+      "rec": [
+        "Set up incident reporting",
+        "Give staff a simple way to report AI errors or data leaks, and agree who investigates and how fast."
+      ],
+      "options": [
+        {
+          "label": "No route or plan",
+          "w": {
+            "s": 0
+          }
+        },
+        {
+          "label": "Through general IT support",
+          "w": {
+            "s": 1
+          }
+        },
+        {
+          "label": "A route exists but no plan",
+          "w": {
+            "s": 2
+          }
+        },
+        {
+          "label": "Yes, a route and a tested response plan",
+          "w": {
+            "s": 3
+          }
+        }
+      ]
+    }
+  ],
+  "notes": {
+    "ng": "Nigeria's Data Protection Act 2023 applies to personal data entered into AI tools, including tools hosted abroad.",
+    "uk": "UK GDPR and ICO guidance on AI apply to any personal data your AI tools process.",
+    "eu": "The EU AI Act places duties on organisations that deploy AI, alongside GDPR.",
+    "multi": "Operating across borders means several regimes apply at once. Map AI use against each one, starting with the strictest.",
+    "personal": "Personal data is in scope, so data protection impact assessments should cover your AI tools.",
+    "records": "Student or patient records carry a higher duty of care and should only reach approved, contracted AI tools.",
+    "fin": "Financial information calls for strong access controls and clear retention rules in any AI tool.",
+    "conf": "Confidential documents should only reach AI tools that contractually exclude training on your data."
+  }
+}
