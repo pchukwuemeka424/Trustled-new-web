@@ -3,6 +3,14 @@ import type { ReactNode } from "react";
 import { HtmlMain } from "@/components/HtmlMain";
 import { getPublishedPage } from "@/lib/cms";
 import { FALLBACK_PAGES } from "@/data/pages-fallback";
+import {
+  ensureAboutPageHtml,
+  ensureHomeImpactHtml,
+  ensureHomePartnersHtml,
+  ensureHomeWhatWeDoHtml,
+  stripAboutHeroSection,
+  stripHomeHeroSections,
+} from "@/data/home-body";
 
 export async function cmsMetadata(slug: string): Promise<Metadata> {
   const page = await getPublishedPage(slug);
@@ -33,10 +41,29 @@ type Props = {
 
 export async function CmsPage({ slug, above, fragment }: Props) {
   const page = await getPublishedPage(slug);
-  const html =
+  let html =
     page?.bodyHtml ||
     FALLBACK_PAGES[slug]?.bodyHtml ||
     `<section class="section"><div class="container"><p>Content coming soon.</p></div></section>`;
+
+  if (slug === "home") {
+    html = ensureHomeWhatWeDoHtml(html);
+    html = ensureHomePartnersHtml(html);
+    html = ensureHomeImpactHtml(html);
+    if (above) {
+      html = stripHomeHeroSections(html);
+      if (!/\bid=["']what-we-do["']/.test(html)) {
+        html = html.replace(/<section class="section"/, '<section class="section" id="what-we-do"');
+      }
+    }
+  }
+
+  if (slug === "about") {
+    html = ensureAboutPageHtml(html);
+    if (above) {
+      html = stripAboutHeroSection(html);
+    }
+  }
 
   if (fragment) {
     return (
@@ -49,7 +76,12 @@ export async function CmsPage({ slug, above, fragment }: Props) {
 
   if (above) {
     return (
-      <main id="main">
+      <main
+        id="main"
+        className={
+          slug === "home" ? "main--home" : slug === "about" ? "main--about" : undefined
+        }
+      >
         {above}
         <div dangerouslySetInnerHTML={{ __html: html }} />
       </main>

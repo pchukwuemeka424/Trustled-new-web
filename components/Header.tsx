@@ -12,9 +12,11 @@ function isActive(pathname: string, href: string) {
 
 export function Header() {
   const pathname = usePathname();
+  const isHome = pathname === "/";
   const [menuOpen, setMenuOpen] = useState(false);
   const [openDd, setOpenDd] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
+  const overHero = isHome && !scrolled && !menuOpen;
 
   useEffect(() => {
     setMenuOpen(false);
@@ -43,11 +45,20 @@ export function Header() {
   }, []);
 
   return (
-    <header className={`site-header${scrolled ? " is-scrolled" : ""}`}>
+    <header
+      className={`site-header${scrolled ? " is-scrolled" : ""}${overHero ? " site-header--over-hero" : ""}`}
+    >
       <div className="container header-inner">
         <Link className="brand" href="/" aria-label="TrustLed AI home">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/assets/img/logo.png" alt="TrustLed AI" width={127} height={32} />
+          <img
+            src={overHero ? "/assets/img/logo-light.png" : "/assets/img/logo.png"}
+            alt="TrustLed AI"
+            width={127}
+            height={32}
+            decoding="async"
+            fetchPriority="high"
+          />
         </Link>
         <nav className="nav" aria-label="Main">
           <Link href="/" aria-current={isActive(pathname, "/") ? "page" : undefined}>
@@ -130,12 +141,6 @@ export function Header() {
           </Link>
           <Link href="/programmes" aria-current={isActive(pathname, "/programmes") ? "page" : undefined}>
             Programmes
-          </Link>
-          <Link href="/impact" aria-current={isActive(pathname, "/impact") ? "page" : undefined}>
-            Impact
-          </Link>
-          <Link href="/insights" aria-current={isActive(pathname, "/insights") ? "page" : undefined}>
-            Insights
           </Link>
           <Link className="btn btn-primary nav-cta" href="/contact">
             Book a consultation <IconArrowRight />

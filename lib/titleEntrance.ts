@@ -30,15 +30,38 @@ function wrapChars(el: HTMLElement) {
   textNodes.forEach((textNode) => {
     const text = textNode.textContent ?? "";
     const frag = document.createDocumentFragment();
-    for (const char of text) {
-      const span = document.createElement("span");
-      span.className = "title-char";
-      span.setAttribute("aria-hidden", "true");
-      span.textContent = char === " " ? "\u00A0" : char;
-      span.style.setProperty("--char-i", String(charIndex));
-      frag.appendChild(span);
-      charIndex += 1;
+    const parts = text.split(/(\s+)/);
+
+    for (const part of parts) {
+      if (!part) continue;
+
+      if (/^\s+$/.test(part)) {
+        for (const char of part) {
+          const span = document.createElement("span");
+          span.className = "title-char";
+          span.setAttribute("aria-hidden", "true");
+          span.textContent = "\u00A0";
+          span.style.setProperty("--char-i", String(charIndex));
+          frag.appendChild(span);
+          charIndex += 1;
+        }
+        continue;
+      }
+
+      const word = document.createElement("span");
+      word.className = "title-word";
+      for (const char of part) {
+        const span = document.createElement("span");
+        span.className = "title-char";
+        span.setAttribute("aria-hidden", "true");
+        span.textContent = char;
+        span.style.setProperty("--char-i", String(charIndex));
+        word.appendChild(span);
+        charIndex += 1;
+      }
+      frag.appendChild(word);
     }
+
     textNode.parentNode?.replaceChild(frag, textNode);
   });
 

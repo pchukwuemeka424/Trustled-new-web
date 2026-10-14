@@ -41,7 +41,7 @@ export function ContactForm() {
   }
 
   return (
-    <form className="form form-card reveal" data-form onSubmit={onSubmit}>
+    <form className="form contact-form" data-form onSubmit={onSubmit}>
       <input
         type="text"
         name="_honey"
@@ -50,6 +50,10 @@ export function ContactForm() {
         autoComplete="off"
         aria-hidden="true"
       />
+      <div className="contact-form__head">
+        <h3 className="contact-form__title">Send a message</h3>
+        <p className="contact-form__sub">Required fields are marked. We only use this to reply.</p>
+      </div>
       <div className="form-row">
         <div className="field">
           <label htmlFor="c-name">Full name</label>
@@ -92,14 +96,14 @@ export function ContactForm() {
       </div>
       <div className="field">
         <label htmlFor="c-msg">Message</label>
-        <textarea id="c-msg" name="Message" required />
+        <textarea id="c-msg" name="Message" required placeholder="What are you trying to achieve?" />
       </div>
       {error ? (
-        <p className="form-note" style={{ color: "var(--orange-dark)" }}>
+        <p className="form-note contact-form__error" role="alert">
           {error}
         </p>
       ) : null}
-      <button type="submit" className="btn btn-primary" disabled={pending}>
+      <button type="submit" className="btn btn-primary contact-form__submit" disabled={pending}>
         {pending ? "Sending…" : "Send message"}{" "}
         <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M5 12h14M13 6l6 6-6 6" />

@@ -32,6 +32,14 @@ export function labelFromHtml(html: string, index: number) {
     if (text) return text.slice(0, 72);
   }
 
+  if (/home-partners-section|partners-carousel/i.test(html)) return "Partners";
+  if (/about-story/i.test(html)) return "Our story";
+  if (/about-purpose/i.test(html)) return "Our purpose";
+  if (/about-impact/i.test(html)) return "Our impact";
+  if (/about-founders/i.test(html)) return "Meet the founders";
+  if (/about-mission/i.test(html)) return "Mission and vision";
+  if (/about-values/i.test(html)) return "Our values";
+  if (/about-company/i.test(html)) return "About the company";
   if (/page-hero|class=["'][^"']*\bhero\b|about-hero|trust-strip/i.test(html)) {
     if (/trust-strip/i.test(html)) return "Trust strip";
     if (/about-hero/i.test(html)) return "About hero";

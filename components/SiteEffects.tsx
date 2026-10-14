@@ -50,7 +50,7 @@ export function SiteEffects() {
 
       main
         .querySelectorAll<HTMLElement>(
-          ".bento, .grid, .steps, .pillars, .reasons, .values-grid"
+          ".bento, .grid, .steps, .pillars, .reasons, .values-grid, .about-values, .about-purpose-grid, .about-story-facts, .about-impact-stats, .about-founders-grid"
         )
         .forEach((el) => {
           if (
@@ -64,7 +64,7 @@ export function SiteEffects() {
 
       main
         .querySelectorAll<HTMLElement>(
-          ".cta, .sector, .mission, .featured, .form-card, .stats-card, .quote, .pull, .service"
+          ".cta, .sector, .mission, .about-mission, .about-company, .about-facts, .about-story, .about-purpose, .about-impact, .about-founders__head, .about-cta, .featured, .form-card, .stats-card, .quote, .pull, .service"
         )
         .forEach((el) => {
           if (

@@ -50,6 +50,7 @@ const EDITABLE_SELECTOR = [
   ".eyebrow",
   ".hero-eyebrow",
   ".about-hero__brand",
+  ".about-hero__eyebrow",
   ".lead",
   ".hero-description",
   ".about-hero__lead",

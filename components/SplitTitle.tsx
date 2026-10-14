@@ -45,13 +45,37 @@ function Char({
 }
 
 function splitText(text: string, startIndex: number, delay: number) {
-  const chars = text.split("");
-  return {
-    nodes: chars.map((char, i) => (
-      <Char key={`${startIndex}-${i}`} char={char} index={startIndex + i} delay={delay} />
-    )),
-    next: startIndex + chars.length,
-  };
+  // Keep words intact so inline-block chars don't wrap mid-word.
+  const parts = text.split(/(\s+)/);
+  const nodes: ReactNode[] = [];
+  let index = startIndex;
+
+  for (let p = 0; p < parts.length; p++) {
+    const part = parts[p];
+    if (!part) continue;
+
+    if (/^\s+$/.test(part)) {
+      for (let i = 0; i < part.length; i++) {
+        nodes.push(
+          <Char key={`${index}`} char={part[i]} index={index} delay={delay} />
+        );
+        index += 1;
+      }
+      continue;
+    }
+
+    const chars = part.split("").map((char, i) => (
+      <Char key={`${index + i}`} char={char} index={index + i} delay={delay} />
+    ));
+    nodes.push(
+      <span key={`word-${index}`} className="title-word">
+        {chars}
+      </span>
+    );
+    index += part.length;
+  }
+
+  return { nodes, next: index };
 }
 
 function splitNodes(children: ReactNode, startIndex: number, delay: number): {

@@ -7,7 +7,13 @@ import {
 } from "@/lib/mongodb";
 import { PAGE_REGISTRY } from "@/lib/page-registry";
 import { FALLBACK_PAGES } from "@/data/pages-fallback";
-import { isHomePlaceholder } from "@/data/home-body";
+import {
+  ensureAboutPageHtml,
+  ensureHomeImpactHtml,
+  ensureHomePartnersHtml,
+  ensureHomeWhatWeDoHtml,
+  isHomePlaceholder,
+} from "@/data/home-body";
 import { normalizeSections, parseSections, sectionsToHtml } from "@/lib/sections";
 
 export type PublicPage = {
@@ -91,19 +97,62 @@ async function ensureSectionsMigrated(doc: PageDocument) {
   const fallback = FALLBACK_PAGES[doc.slug];
   const needsHomeUpgrade =
     doc.slug === "home" && isHomePlaceholder(doc.bodyHtml || "");
+  const needsHomeWhatWeDo =
+    doc.slug === "home" &&
+    !needsHomeUpgrade &&
+    (!/(home-service-card|home-services)/i.test(doc.bodyHtml || "") ||
+      !/home-spotlight/i.test(doc.bodyHtml || ""));
+  const needsHomePartners =
+    doc.slug === "home" &&
+    !needsHomeUpgrade &&
+    !(doc.bodyHtml || "").includes("home-partners-section");
+  const needsHomeImpact =
+    doc.slug === "home" &&
+    !needsHomeUpgrade &&
+    !(doc.bodyHtml || "").includes("home-impact-section");
   const needsAboutHero =
     doc.slug === "about" &&
     fallback &&
     !(doc.bodyHtml || "").includes("about-hero") &&
     (fallback.bodyHtml || "").includes("about-hero");
+  const needsAboutLayout =
+    doc.slug === "about" &&
+    !/(about-story|about-purpose|about-impact)/i.test(doc.bodyHtml || "");
+  const needsAboutFounders =
+    doc.slug === "about" &&
+    !needsAboutLayout &&
+    !/about-founders/i.test(doc.bodyHtml || "");
   const needsSections = !Array.isArray(doc.sections) || doc.sections.length === 0;
 
-  if (!needsHomeUpgrade && !needsAboutHero && !needsSections) return doc;
+  if (
+    !needsHomeUpgrade &&
+    !needsHomeWhatWeDo &&
+    !needsHomePartners &&
+    !needsHomeImpact &&
+    !needsAboutHero &&
+    !needsAboutLayout &&
+    !needsAboutFounders &&
+    !needsSections
+  ) {
+    return doc;
+  }
 
-  const bodyHtml =
+  let bodyHtml =
     needsHomeUpgrade || needsAboutHero
       ? fallback?.bodyHtml || doc.bodyHtml || ""
       : doc.bodyHtml || "";
+  if (needsHomeWhatWeDo || (needsHomeUpgrade && doc.slug === "home")) {
+    bodyHtml = ensureHomeWhatWeDoHtml(bodyHtml);
+  }
+  if (needsHomePartners || (needsHomeUpgrade && doc.slug === "home")) {
+    bodyHtml = ensureHomePartnersHtml(bodyHtml);
+  }
+  if (needsHomeImpact || (needsHomeUpgrade && doc.slug === "home")) {
+    bodyHtml = ensureHomeImpactHtml(bodyHtml);
+  }
+  if (needsAboutLayout || needsAboutHero || needsAboutFounders) {
+    bodyHtml = ensureAboutPageHtml(bodyHtml);
+  }
   const sections = parseSections(bodyHtml);
   const col = await getPagesCollection();
   await col.updateOne(
