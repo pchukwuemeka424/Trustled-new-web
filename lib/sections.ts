@@ -36,7 +36,7 @@ export function labelFromHtml(html: string, index: number) {
   if (/about-story/i.test(html)) return "Our story";
   if (/about-purpose/i.test(html)) return "Our purpose";
   if (/about-impact/i.test(html)) return "Our impact";
-  if (/about-founders/i.test(html)) return "Meet the founders";
+  if (/about-founders/i.test(html)) return "Meet Our Team";
   if (/about-mission/i.test(html)) return "Mission and vision";
   if (/about-values/i.test(html)) return "Our values";
   if (/about-company/i.test(html)) return "About the company";

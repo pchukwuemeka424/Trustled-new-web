@@ -216,7 +216,7 @@ export const ABOUT_HERO_HTML = `<section class="about-hero" aria-labelledby="abo
 export const ABOUT_FOUNDERS_HTML = `<section class="section about-founders-section" aria-labelledby="about-founders-title">
 <div class="container">
 <div class="about-founders__head reveal">
-<div class="eyebrow">Meet the founders</div>
+<div class="eyebrow">Meet Our Team</div>
 <h2 id="about-founders-title" class="h2">The people behind the work.</h2>
 <p>Practitioners actively working in AI governance and AI engineering.</p>
 </div>
@@ -225,19 +225,16 @@ export const ABOUT_FOUNDERS_HTML = `<section class="section about-founders-secti
 <span class="about-founder__avatar" aria-hidden="true">FO</span>
 <h3 class="about-founder__name">Franklin Okeke</h3>
 <p class="about-founder__role">Consultant - AI Governance</p>
-<p class="about-founder__bio">CISA and ISO/IEC 42001 Lead Auditor. MSc in Cybersecurity and Human Factors. Technology writer with 400+ published articles across the trade press on AI governance and cybersecurity.</p>
 </article>
 <article class="about-founder">
 <span class="about-founder__avatar" aria-hidden="true">PC</span>
 <h3 class="about-founder__name">Prince Chukwuemeka</h3>
 <p class="about-founder__role">AI Engineering Lead</p>
-<p class="about-founder__bio">Engineering lead behind TrustLed AI’s tooling and secure deployments, with a background building ISO 27001 and GDPR risk frameworks.</p>
 </article>
 <article class="about-founder">
 <span class="about-founder__avatar" aria-hidden="true">AO</span>
 <h3 class="about-founder__name">Dr Arome Solomon Odiba</h3>
 <p class="about-founder__role">Research &amp; Scientific Advisory Partner</p>
-<p class="about-founder__bio">Research and scientific advisory partner supporting TrustLed AI’s evidence-led approach to responsible AI.</p>
 </article>
 </div>
 </div>
@@ -341,6 +338,25 @@ ${ABOUT_FOUNDERS_HTML}
 
 const ABOUT_STORY_IMG = "/assets/img/about-story.jpg";
 
+const REMOVED_FOUNDER_BIO =
+  /CISA and ISO\/IEC 42001 Lead Auditor|Engineering lead behind TrustLed AI|Research and scientific advisory partner supporting TrustLed AI/i;
+
+/** Founder bios removed from the About cards. */
+export function hasRemovedFounderBio(html: string) {
+  return REMOVED_FOUNDER_BIO.test(html || "");
+}
+
+export function stripRemovedFounderBio(html: string) {
+  return (html || "").replace(
+    /<p class="about-founder__bio">\s*(?:CISA and ISO\/IEC 42001 Lead Auditor|Engineering lead behind TrustLed AI|Research and scientific advisory partner supporting TrustLed AI)[\s\S]*?<\/p>\s*/gi,
+    "",
+  );
+}
+
+export function renameFoundersHeading(html: string) {
+  return (html || "").replace(/Meet the founders/gi, "Meet Our Team");
+}
+
 function syncAboutImages(html: string) {
   return (html || "").replace(
     /(<div class="about-story__media">\s*<img\b[^>]*?\bsrc=)(["'])[^"']*\2/i,
@@ -348,7 +364,7 @@ function syncAboutImages(html: string) {
   );
 }
 
-/** Insert Meet the Founders when CMS About HTML is missing it. */
+/** Insert Meet Our Team when CMS About HTML is missing it. */
 function ensureAboutFoundersHtml(html: string) {
   const source = html || "";
   if (/about-founders/i.test(source)) return source;
@@ -370,7 +386,7 @@ function ensureAboutFoundersHtml(html: string) {
 
 /** Keep About body on the mockup layout (legacy mission/values/company upgraded). */
 export function ensureAboutPageHtml(html: string) {
-  const source = html || "";
+  const source = renameFoundersHeading(stripRemovedFounderBio(html || ""));
   if (/about-story/i.test(source) && /about-purpose/i.test(source) && /about-impact/i.test(source)) {
     return ensureAboutFoundersHtml(syncAboutImages(source));
   }

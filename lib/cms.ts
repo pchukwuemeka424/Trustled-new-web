@@ -12,7 +12,10 @@ import {
   ensureHomeImpactHtml,
   ensureHomePartnersHtml,
   ensureHomeWhatWeDoHtml,
+  hasRemovedFounderBio,
   isHomePlaceholder,
+  renameFoundersHeading,
+  stripRemovedFounderBio,
 } from "@/data/home-body";
 import { normalizeSections, parseSections, sectionsToHtml } from "@/lib/sections";
 
@@ -122,6 +125,10 @@ async function ensureSectionsMigrated(doc: PageDocument) {
     doc.slug === "about" &&
     !needsAboutLayout &&
     !/about-founders/i.test(doc.bodyHtml || "");
+  const aboutStored = `${doc.bodyHtml || ""}\n${JSON.stringify(doc.sections || [])}`;
+  const needsAboutBioStrip = doc.slug === "about" && hasRemovedFounderBio(aboutStored);
+  const needsAboutTeamRename =
+    doc.slug === "about" && /Meet the founders/i.test(aboutStored);
   const needsSections = !Array.isArray(doc.sections) || doc.sections.length === 0;
 
   if (
@@ -132,6 +139,8 @@ async function ensureSectionsMigrated(doc: PageDocument) {
     !needsAboutHero &&
     !needsAboutLayout &&
     !needsAboutFounders &&
+    !needsAboutBioStrip &&
+    !needsAboutTeamRename &&
     !needsSections
   ) {
     return doc;
@@ -152,6 +161,17 @@ async function ensureSectionsMigrated(doc: PageDocument) {
   }
   if (needsAboutLayout || needsAboutHero || needsAboutFounders) {
     bodyHtml = ensureAboutPageHtml(bodyHtml);
+  }
+  if (needsAboutBioStrip || needsAboutTeamRename) {
+    const fromSections =
+      Array.isArray(doc.sections) && doc.sections.length
+        ? sectionsToHtml(doc.sections)
+        : "";
+    const source =
+      hasRemovedFounderBio(bodyHtml) || /Meet the founders/i.test(bodyHtml)
+        ? bodyHtml
+        : fromSections || bodyHtml;
+    bodyHtml = renameFoundersHeading(stripRemovedFounderBio(source));
   }
   const sections = parseSections(bodyHtml);
   const col = await getPagesCollection();
