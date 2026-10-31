@@ -88,7 +88,7 @@ export const HOME_WHAT_WE_DO_HTML = `<section class="section" id="what-we-do">
 </ul>
 <span class="more">About UAICIP ${ARROW_SVG}</span>
 </div>
-<div class="home-spotlight__media"><img src="/assets/img/home/home-uaicip.jpg" alt="University students on campus representing UAICIP" width="640" height="800" loading="lazy"><span class="home-spotlight__curve" aria-hidden="true"></span></div>
+<div class="home-spotlight__media"><img src="/assets/img/home/home-uaicip.jpg" alt="Stack of books on AI literacy, responsible AI, academic integrity and digital skills" width="640" height="800" loading="lazy"><span class="home-spotlight__curve" aria-hidden="true"></span></div>
 </a>
 </div>
 </div>

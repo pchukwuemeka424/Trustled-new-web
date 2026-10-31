@@ -31,25 +31,62 @@ export function mountSurvey(root: HTMLElement, D: any) {
   function render() {
     const q = Q[idx];
     const multi = q.type === "checkbox";
+    const isSelect = q.type === "select";
     const name = root.id + "-q" + idx;
-    const opts = q.options
-      .map((o: { label: string }, i: number) => {
-        const checked = answers[idx].indexOf(i) > -1 ? " checked" : "";
-        return (
-          '<label class="opt"><input type="' +
-          (multi ? "checkbox" : "radio") +
-          '" name="' +
-          name +
-          '" value="' +
-          i +
-          '"' +
-          checked +
-          '><span class="mark"></span><span>' +
-          esc(o.label) +
-          "</span></label>"
-        );
-      })
-      .join("");
+    let controls = "";
+    if (isSelect) {
+      const selected = answers[idx][0];
+      const placeholder = q.placeholder || "Select an answer";
+      const opts =
+        '<option value="" disabled' +
+        (selected == null ? " selected" : "") +
+        ">" +
+        esc(placeholder) +
+        "</option>" +
+        q.options
+          .map((o: { label: string }, i: number) => {
+            return (
+              '<option value="' +
+              i +
+              '"' +
+              (selected === i ? " selected" : "") +
+              ">" +
+              esc(o.label) +
+              "</option>"
+            );
+          })
+          .join("");
+      controls =
+        '<select class="survey-select" name="' +
+        name +
+        '" aria-label="' +
+        esc(q.title) +
+        '">' +
+        opts +
+        "</select>";
+    } else {
+      controls =
+        '<div class="opts">' +
+        q.options
+          .map((o: { label: string }, i: number) => {
+            const checked = answers[idx].indexOf(i) > -1 ? " checked" : "";
+            return (
+              '<label class="opt"><input type="' +
+              (multi ? "checkbox" : "radio") +
+              '" name="' +
+              name +
+              '" value="' +
+              i +
+              '"' +
+              checked +
+              '><span class="mark"></span><span>' +
+              esc(o.label) +
+              "</span></label>"
+            );
+          })
+          .join("") +
+        "</div>";
+    }
     stage.innerHTML =
       '<div class="q"><fieldset><div class="q-domain">' +
       esc(q.domain) +
@@ -57,10 +94,10 @@ export function mountSurvey(root: HTMLElement, D: any) {
       esc(q.title) +
       "</legend>" +
       '<p class="q-hint">' +
-      esc(q.hint || "Choose one answer.") +
-      '</p><div class="opts">' +
-      opts +
-      "</div></fieldset></div>";
+      esc(q.hint || (isSelect ? "Select one answer." : "Choose one answer.")) +
+      "</p>" +
+      controls +
+      "</fieldset></div>";
     countLabel.textContent = "Question " + (idx + 1) + " of " + total;
     const pct = Math.round((idx / total) * 100);
     bar.style.width = pct + "%";
@@ -69,6 +106,16 @@ export function mountSurvey(root: HTMLElement, D: any) {
     next.innerHTML = (idx === total - 1 ? "See my results " : "Continue ") + ARROW;
     errorEl.textContent = "";
     updateNext();
+
+    if (isSelect) {
+      const sel = stage.querySelector("select") as HTMLSelectElement;
+      sel.addEventListener("change", () => {
+        answers[idx] = sel.value === "" ? [] : [+sel.value];
+        errorEl.textContent = "";
+        updateNext();
+      });
+      return;
+    }
 
     stage.querySelectorAll("input").forEach((inp) => {
       inp.addEventListener("change", () => {
